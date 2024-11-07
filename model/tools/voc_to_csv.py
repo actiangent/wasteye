@@ -4,11 +4,13 @@ import os
 import glob
 import pandas as pd
 import xml.etree.ElementTree as ET
+import argparse
 
 
 def xml_to_csv(path):
     xml_list = []
     for xml_file in glob.glob(path + "/*.xml"):
+        print(xml_file)
         tree = ET.parse(xml_file)
         root = tree.getroot()
         for member in root.findall("object"):
@@ -23,6 +25,7 @@ def xml_to_csv(path):
                 int(member[4][3].text),
             )
             xml_list.append(value)
+
     column_name = [
         "filename",
         "width",
@@ -37,11 +40,30 @@ def xml_to_csv(path):
     return xml_df
 
 
-def main():
-    image_path = os.path.join(os.getcwd(), "annotations")
-    xml_df = xml_to_csv(image_path)
-    xml_df.to_csv("raccoon_labels.csv", index=None)
-    print("Successfully converted xml to csv.")
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+        description="Create CSV data file from Pascal VOC annotation files."
+    )
+    parser.add_argument("path", type=str, help="Path to the folder containing files")
+    parser.add_argument(
+        "--directories",
+        nargs="+",
+        default=["train", "val"],
+        help="List of directories to include (default: ['train', 'val'])",
+    )
 
+    args = parser.parse_args()
 
-main()
+    dirs = args.directories
+    if isinstance(dirs, str):
+        extensions = [dirs]
+
+    path = args.path
+    for dir in dirs:
+        image_path = os.path.join(os.getcwd(), (path + "/" + dir))
+        print(image_path)
+        xml_df = xml_to_csv(image_path)
+        xml_df.to_csv((path + "/" + dir + "_labels.csv"), index=None)
+        print("Successfully converted xml to csv.")
+
+    # python tools/voc_to_csv.py data/annotated --directories val
