@@ -1,6 +1,7 @@
 # From: https://gist.github.com/ed-alertedh/9f49bfc6216585f520c7c7723d20d951
 
 import tensorflow as tf
+import argparse
 
 def validate_dataset(filenames, reader_opts=None):
     """
@@ -19,5 +20,14 @@ def validate_dataset(filenames, reader_opts=None):
         except Exception as e:
             print('Error in {} at record {}'.format(fname, i))
             print(e)
+
+if __name__ == "__main__":
+
+    parser = argparse.ArgumentParser(description="Validate .tfrecord files.")
+    parser.add_argument("file", type=str, help="Path to the tfrecord file")
+
+    args = parser.parse_args()
+
+    validate_dataset(args.folder_path)
 
     
