@@ -1,25 +1,20 @@
-# From: https://gist.github.com/ed-alertedh/9f49bfc6216585f520c7c7723d20d951
+# From: https://stackoverflow.com/a/77783422
 
 import tensorflow as tf
 import argparse
 
-def validate_dataset(filenames, reader_opts=None):
-    """
-    Attempt to iterate over every record in the supplied iterable of TFRecord filenames
-    :param filenames: iterable of filenames to read
-    :param reader_opts: (optional) tf.python_io.TFRecordOptions to use when constructing the record iterator
-    """
-    i = 0
-    for fname in filenames:
-        print('validating ', fname)
-
-        record_iterator = tf.python_io.tf_record_iterator(path=fname, options=reader_opts)
-        try:
-            for _ in record_iterator:
-                i += 1
-        except Exception as e:
-            print('Error in {} at record {}'.format(fname, i))
-            print(e)
+def validate_tfrecord(file):
+    try:
+        for record in tf.data.TFRecordDataset(file):
+            # Attempt to parse the record
+            _ = tf.train.Example.FromString(record.numpy())
+    except tf.errors.DataLossError as e:
+        print(f"DataLossError encountered: {e}")
+        return True
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return True
+    return False
 
 if __name__ == "__main__":
 
@@ -28,6 +23,9 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    validate_dataset(args.folder_path)
+    if validate_tfrecord(args.file):
+      print(f"The TFRecord file {args.file} is corrupted.")
+    else:
+      print(f"The TFRecord file {args.file} is fine.")
 
     
