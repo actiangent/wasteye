@@ -14,16 +14,23 @@ def xml_to_csv(path):
         tree = ET.parse(xml_file)
         root = tree.getroot()
         for member in root.findall("object"):
+
+            # https://github.com/tensorflow/models/issues/8595#issuecomment-1066146944
+            bndbox = member.find("bndbox")
+            xmin = int(bndbox.find("xmin").text)
+            ymin = int(bndbox.find("ymin").text)
+            xmax = int(bndbox.find("xmax").text)
+            ymax = int(bndbox.find("ymax").text)
+
             value = (
                 root.find("filename").text,
                 int(root.find("size")[0].text),
                 int(root.find("size")[1].text),
                 member[0].text,
-                # <bndbox>
-                int(member.find("bndbox")[0].text),
-                int(member.find("bndbox")[1].text),
-                int(member.find("bndbox")[2].text),
-                int(member.find("bndbox")[3].text),
+                xmin,
+                ymin,
+                xmax,
+                ymax,
             )
             xml_list.append(value)
 
