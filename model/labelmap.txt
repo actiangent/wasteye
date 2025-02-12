@@ -1,8 +1,5 @@
 cardboard
-electronic_waste
 glass
 metal
-organic
 paper
 plastic
-rubber
