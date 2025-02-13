@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">Wasteye</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="waste_type_cardboard">Cardboard</string>
+    <string name="waste_type_glass">Glass</string>
+    <string name="waste_type_metal">Metal</string>
+    <string name="waste_type_paper">Paper</string>
+    <string name="waste_type_plastic">Plastic</string>
+    <string name="waste_type_unknown">Unknown</string>
 </resources>

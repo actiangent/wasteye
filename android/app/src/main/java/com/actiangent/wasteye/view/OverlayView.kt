@@ -9,10 +9,9 @@ import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
-import android.widget.Toast
-import androidx.core.content.ContextCompat
+import androidx.core.graphics.ColorUtils
 import com.actiangent.wasteye.R
-import model.WasteType
+import com.actiangent.wasteye.model.WasteType
 import org.tensorflow.lite.task.vision.detector.Detection
 import java.util.LinkedList
 import kotlin.math.max
@@ -30,6 +29,8 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
 
     private val boundingBoxes: MutableList<RectF> = mutableListOf()
 
+    private var onClickListener: OnClickListener? = null
+
     init {
         initPaints()
     }
@@ -43,7 +44,9 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
     }
 
     private fun initPaints() {
-        textBackgroundPaint.color = Color.argb(50, 246, 251, 243)
+        val boundingBoxColor = context.getColor(R.color.bounding_box_color)
+
+        textBackgroundPaint.color = ColorUtils.setAlphaComponent(boundingBoxColor, 50)
         textBackgroundPaint.style = Paint.Style.FILL
         textBackgroundPaint.textSize = 50f
 
@@ -51,7 +54,7 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
         textPaint.style = Paint.Style.FILL
         textPaint.textSize = 50f
 
-        boxPaint.color = ContextCompat.getColor(context!!, R.color.bounding_box_color)
+        boxPaint.color = boundingBoxColor
         boxPaint.strokeWidth = 4F
         boxPaint.style = Paint.Style.STROKE
     }
@@ -80,7 +83,15 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
             } catch (e: IllegalArgumentException) {
                 WasteType.UNKNOWN
             }
-            val drawableText = "$type ${String.format("%.2f", result.categories[0].score)}"
+            val typeText = when (type) {
+                WasteType.CARDBOARD -> context.getString(R.string.waste_type_cardboard)
+                WasteType.GLASS -> context.getString(R.string.waste_type_glass)
+                WasteType.METAL -> context.getString(R.string.waste_type_metal)
+                WasteType.PAPER -> context.getString(R.string.waste_type_paper)
+                WasteType.PLASTIC -> context.getString(R.string.waste_type_plastic)
+                WasteType.UNKNOWN -> context.getString(R.string.waste_type_unknown)
+            }
+            val drawableText = "$typeText ${String.format("%.2f", result.categories[0].score)}"
 
             // Draw rect behind display text
             textBackgroundPaint.getTextBounds(drawableText, 0, drawableText.length, textBounds)
@@ -117,14 +128,21 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         event?.let { motionEvent ->
             if (motionEvent.action == MotionEvent.ACTION_DOWN) {
-                boundingBoxes.forEach { bounds ->
+                boundingBoxes.forEachIndexed { index, bounds ->
                     if (motionEvent.rawX <= (bounds.centerX() + (BOUNDING_CIRCLE_RADIUS / 2)) &&
                         motionEvent.rawX >= (bounds.centerX() - (BOUNDING_CIRCLE_RADIUS / 2)) &&
                         motionEvent.rawY <= ((bounds.centerY() + (bounds.height() / 2)) + (BOUNDING_CIRCLE_RADIUS / 2)) &&
                         motionEvent.rawY >= ((bounds.centerY() + (bounds.height() / 2)) - (BOUNDING_CIRCLE_RADIUS / 2))
                     ) {
-                        Toast.makeText(context!!, "Circle clicked", Toast.LENGTH_SHORT)
-                            .show()
+                        val result = results[index]
+                        val label = result.categories[0].label
+                        val type: WasteType = try {
+                            WasteType.valueOf(label.uppercase())
+                        } catch (e: IllegalArgumentException) {
+                            WasteType.UNKNOWN
+                        }
+
+                        onClickListener?.onWasteClicked(type)
                     }
                 }
             }
@@ -148,6 +166,14 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
         // PreviewView is in FILL_START mode. So we need to scale up the bounding box to match with
         // the size that the captured images will be displayed.
         scaleFactor = max(width * 1f / imageWidth, height * 1f / imageHeight)
+    }
+
+    interface OnClickListener {
+        fun onWasteClicked(type: WasteType)
+    }
+
+    fun setOnclickListener(onClickListener: OnClickListener) {
+        this.onClickListener = onClickListener
     }
 
     companion object {

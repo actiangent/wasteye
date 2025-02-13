@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.graphics.Bitmap
-import android.graphics.RectF
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -23,11 +22,11 @@ import androidx.camera.core.resolutionselector.AspectRatioStrategy
 import androidx.camera.core.resolutionselector.ResolutionSelector
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
-import androidx.core.view.doOnLayout
 import androidx.fragment.app.Fragment
 import com.actiangent.wasteye.WasteyeObjectDetector
 import com.actiangent.wasteye.databinding.FragmentCameraBinding
-import org.tensorflow.lite.support.label.Category
+import com.actiangent.wasteye.model.WasteType
+import com.actiangent.wasteye.view.OverlayView
 import org.tensorflow.lite.task.vision.detector.Detection
 import java.util.LinkedList
 import java.util.concurrent.ExecutorService
@@ -35,10 +34,7 @@ import java.util.concurrent.Executors
 
 private val CAMERA_PERMISSION = Manifest.permission.CAMERA
 
-
-class CameraFragment : Fragment() {
-
-    private val TAG = "CameraFragment"
+class CameraFragment : Fragment(), OverlayView.OnClickListener {
 
     private var _fragmentCameraBinding: FragmentCameraBinding? = null
     private val fragmentCameraBinding get() = _fragmentCameraBinding!!
@@ -102,6 +98,8 @@ class CameraFragment : Fragment() {
 
         // Initialize our background executor
         cameraExecutor = Executors.newSingleThreadExecutor()
+
+        fragmentCameraBinding.overlay.setOnclickListener(this)
     }
 
     override fun onResume() {
@@ -224,6 +222,14 @@ class CameraFragment : Fragment() {
         objectDetector.detect(bitmapBuffer, imageRotation)
     }
 
+    override fun onWasteClicked(type: WasteType) {
+        val wasteBottomSheetFragment = WasteBottomSheetFragment(type)
+        wasteBottomSheetFragment.show(parentFragmentManager, WasteBottomSheetFragment.TAG)
+    }
+
+    companion object {
+        const val TAG = "CameraFragment"
+    }
 }
 
 private fun hasPermissions(context: Context) =
