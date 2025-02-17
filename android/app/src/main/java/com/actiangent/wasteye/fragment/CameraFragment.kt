@@ -23,16 +23,17 @@ import androidx.camera.core.resolutionselector.ResolutionSelector
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.actiangent.wasteye.WasteyeObjectDetector
 import com.actiangent.wasteye.databinding.FragmentCameraBinding
-import com.actiangent.wasteye.model.WasteType
+import com.actiangent.wasteye.model.Waste
 import com.actiangent.wasteye.view.OverlayView
 import org.tensorflow.lite.task.vision.detector.Detection
 import java.util.LinkedList
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-private val CAMERA_PERMISSION = Manifest.permission.CAMERA
+private const val CAMERA_PERMISSION = Manifest.permission.CAMERA
 
 class CameraFragment : Fragment(), OverlayView.OnClickListener {
 
@@ -99,7 +100,12 @@ class CameraFragment : Fragment(), OverlayView.OnClickListener {
         // Initialize our background executor
         cameraExecutor = Executors.newSingleThreadExecutor()
 
-        fragmentCameraBinding.overlay.setOnclickListener(this)
+        fragmentCameraBinding.apply {
+            overlay.setOnclickListener(this@CameraFragment)
+            buttonRecycle.setOnClickListener {
+                navigateToWasteList()
+            }
+        }
     }
 
     override fun onResume() {
@@ -138,13 +144,6 @@ class CameraFragment : Fragment(), OverlayView.OnClickListener {
                 }
                 .show()
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _fragmentCameraBinding = null
-
-        cameraExecutor.shutdown()
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
@@ -222,10 +221,26 @@ class CameraFragment : Fragment(), OverlayView.OnClickListener {
         objectDetector.detect(bitmapBuffer, imageRotation)
     }
 
-    override fun onWasteClicked(type: WasteType) {
+    override fun onWasteClicked(type: Waste) {
+
         val wasteBottomSheetFragment = WasteBottomSheetFragment(type)
         wasteBottomSheetFragment.show(parentFragmentManager, WasteBottomSheetFragment.TAG)
     }
+
+    private fun navigateToWasteList() {
+        val action = CameraFragmentDirections.actionCameraFragmentToWasteListFragment()
+        findNavController().navigate(action)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        cameraProvider?.unbindAll()
+        cameraExecutor.shutdown()
+
+        _fragmentCameraBinding = null
+    }
+
 
     companion object {
         const val TAG = "CameraFragment"

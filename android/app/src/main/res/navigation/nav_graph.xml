@@ -9,5 +9,27 @@
         android:id="@+id/cameraFragment"
         android:name="com.actiangent.wasteye.fragment.CameraFragment"
         android:label="fragment_camera"
-        tools:layout="@layout/fragment_camera" />
+        tools:layout="@layout/fragment_camera" >
+        <action
+            android:id="@+id/action_cameraFragment_to_wasteListFragment"
+            app:destination="@id/wasteListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/wasteListFragment"
+        android:name="com.actiangent.wasteye.fragment.WasteListFragment"
+        android:label="fragment_wastes"
+        tools:layout="@layout/fragment_waste_list" >
+        <action
+            android:id="@+id/action_wasteListFragment_to_wasteDetailFragment"
+            app:destination="@id/wasteDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/wasteDetailFragment"
+        android:name="com.actiangent.wasteye.fragment.WasteDetailFragment"
+        android:label="fragment_waste_detail"
+        tools:layout="@layout/fragment_waste_detail" >
+        <argument
+            android:name="wasteOrdinal"
+            app:argType="integer" />
+    </fragment>
 </navigation>

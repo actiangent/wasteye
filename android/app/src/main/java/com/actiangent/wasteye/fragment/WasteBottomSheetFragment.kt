@@ -1,15 +1,19 @@
 package com.actiangent.wasteye.fragment
 
+import android.graphics.text.LineBreaker.JUSTIFICATION_MODE_INTER_WORD
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.actiangent.wasteye.R
+import coil.load
+import coil.size.Scale
 import com.actiangent.wasteye.databinding.FragmentWasteBottomSheetBinding
+import com.actiangent.wasteye.model.Waste
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.actiangent.wasteye.model.WasteType
+import com.google.android.material.shape.CornerFamily
 
-class WasteBottomSheetFragment(private val type: WasteType) : BottomSheetDialogFragment() {
+class WasteBottomSheetFragment(private val waste: Waste) : BottomSheetDialogFragment() {
 
     private var _fragmentWasteBottomSheetBinding: FragmentWasteBottomSheetBinding? = null
     private val fragmentWasteBottomSheetBinding get() = _fragmentWasteBottomSheetBinding!!
@@ -27,16 +31,21 @@ class WasteBottomSheetFragment(private val type: WasteType) : BottomSheetDialogF
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        _fragmentWasteBottomSheetBinding.apply {
-            val typeText = when (type) {
-                WasteType.CARDBOARD -> requireContext().getString(R.string.waste_type_cardboard)
-                WasteType.GLASS -> requireContext().getString(R.string.waste_type_glass)
-                WasteType.METAL -> requireContext().getString(R.string.waste_type_metal)
-                WasteType.PAPER -> requireContext().getString(R.string.waste_type_paper)
-                WasteType.PLASTIC -> requireContext().getString(R.string.waste_type_plastic)
-                WasteType.UNKNOWN -> requireContext().getString(R.string.waste_type_unknown)
+        fragmentWasteBottomSheetBinding.apply {
+            itemWaste.textWasteName.text = requireContext().getString(waste.nameResId)
+            itemWaste.imageWaste.apply {
+                shapeAppearanceModel = shapeAppearanceModel.toBuilder()
+                    .setAllCorners(CornerFamily.ROUNDED, 16f)
+                    .build()
+                load(waste.imageResId) {
+                    crossfade(50)
+                }
             }
-            fragmentWasteBottomSheetBinding.tvWasteName.text = typeText
+            textWasteDescription.text = waste.description
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                textWasteDescription.justificationMode = JUSTIFICATION_MODE_INTER_WORD
+            }
         }
     }
 

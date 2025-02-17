@@ -11,7 +11,7 @@ import android.view.MotionEvent
 import android.view.View
 import androidx.core.graphics.ColorUtils
 import com.actiangent.wasteye.R
-import com.actiangent.wasteye.model.WasteType
+import com.actiangent.wasteye.model.Waste
 import org.tensorflow.lite.task.vision.detector.Detection
 import java.util.LinkedList
 import kotlin.math.max
@@ -78,18 +78,18 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
 
             // Create text to display alongside detected objects
             val label = result.categories[0].label
-            val type: WasteType = try {
-                WasteType.valueOf(label.uppercase())
+            val type: Waste = try {
+                Waste.valueOf(label.uppercase())
             } catch (e: IllegalArgumentException) {
-                WasteType.UNKNOWN
+                Waste.UNKNOWN
             }
             val typeText = when (type) {
-                WasteType.CARDBOARD -> context.getString(R.string.waste_type_cardboard)
-                WasteType.GLASS -> context.getString(R.string.waste_type_glass)
-                WasteType.METAL -> context.getString(R.string.waste_type_metal)
-                WasteType.PAPER -> context.getString(R.string.waste_type_paper)
-                WasteType.PLASTIC -> context.getString(R.string.waste_type_plastic)
-                WasteType.UNKNOWN -> context.getString(R.string.waste_type_unknown)
+                Waste.CARDBOARD -> context.getString(R.string.waste_type_cardboard)
+                Waste.GLASS -> context.getString(R.string.waste_type_glass)
+                Waste.METAL -> context.getString(R.string.waste_type_metal)
+                Waste.PAPER -> context.getString(R.string.waste_type_paper)
+                Waste.PLASTIC -> context.getString(R.string.waste_type_plastic)
+                Waste.UNKNOWN -> context.getString(R.string.waste_type_unknown)
             }
             val drawableText = "$typeText ${String.format("%.2f", result.categories[0].score)}"
 
@@ -136,10 +136,10 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
                     ) {
                         val result = results[index]
                         val label = result.categories[0].label
-                        val type: WasteType = try {
-                            WasteType.valueOf(label.uppercase())
+                        val type: Waste = try {
+                            Waste.valueOf(label.uppercase())
                         } catch (e: IllegalArgumentException) {
-                            WasteType.UNKNOWN
+                            Waste.UNKNOWN
                         }
 
                         onClickListener?.onWasteClicked(type)
@@ -169,7 +169,7 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
     }
 
     interface OnClickListener {
-        fun onWasteClicked(type: WasteType)
+        fun onWasteClicked(type: Waste)
     }
 
     fun setOnclickListener(onClickListener: OnClickListener) {

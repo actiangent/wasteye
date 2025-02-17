@@ -4,12 +4,13 @@ agp = "8.3.0"
 androidxNaviationSafeargs = "2.8.3"
 appcompat = "1.7.0"
 camerax = "1.4.0"
+coil = "2.5.0"
 constraintlayout = "2.2.0"
 coreKtx = "1.13.0"
 espressoCore = "3.6.1"
 junit = "4.13.2"
 junitVersion = "1.2.1"
-kotlin = "1.9.0"
+kotlin = "1.9.10"
 kotlinxCoroutines = "1.8.1"
 lifecycle = "2.8.7"
 material = "1.12.0"
@@ -31,6 +32,7 @@ androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-co
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "lifecycle" }
 androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+coil = { module = "io.coil-kt:coil", version.ref = "coil" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 kotlinx-coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "kotlinxCoroutines" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
