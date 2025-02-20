@@ -2,9 +2,11 @@ package com.actiangent.wasteye.fragment
 
 import android.Manifest
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -18,12 +20,16 @@ import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
 import androidx.camera.core.Preview
+import androidx.camera.core.TorchState
 import androidx.camera.core.resolutionselector.AspectRatioStrategy
 import androidx.camera.core.resolutionselector.ResolutionSelector
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
+import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import coil.load
+import com.actiangent.wasteye.R
 import com.actiangent.wasteye.WasteyeObjectDetector
 import com.actiangent.wasteye.databinding.FragmentCameraBinding
 import com.actiangent.wasteye.model.Waste
@@ -39,6 +45,8 @@ class CameraFragment : Fragment(), OverlayView.OnClickListener {
 
     private var _fragmentCameraBinding: FragmentCameraBinding? = null
     private val fragmentCameraBinding get() = _fragmentCameraBinding!!
+
+    private var isTorchEnabled = false
 
     private val requestPermissionLauncher =
         registerForActivityResult(
@@ -97,13 +105,35 @@ class CameraFragment : Fragment(), OverlayView.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Initialize our background executor
+        // Initialize background executor
         cameraExecutor = Executors.newSingleThreadExecutor()
 
         fragmentCameraBinding.apply {
             overlay.setOnclickListener(this@CameraFragment)
-            buttonRecycle.setOnClickListener {
-                navigateToWasteList()
+            iconButtonFlash.setOnClickListener {
+                camera?.cameraControl?.enableTorch(!isTorchEnabled)
+            }
+
+            iconButtonHamburger.setOnClickListener {
+                drawer.openDrawer(GravityCompat.START)
+            }
+
+            drawerNavigation.setNavigationItemSelectedListener { menu ->
+                when (menu.itemId) {
+                    R.id.drawer_item_wastes -> {
+                        navigateToWasteList()
+                        true
+                    }
+                    R.id.drawer_item_recycle -> {
+                        startMapsIntent()
+                        true
+                    }
+                    R.id.drawer_item_settings -> {
+                        navigateToSettings()
+                        true
+                    }
+                    else -> false
+                }
             }
         }
     }
@@ -171,19 +201,18 @@ class CameraFragment : Fragment(), OverlayView.OnClickListener {
             CameraSelector.Builder().requireLensFacing(CameraSelector.LENS_FACING_BACK).build()
 
         val resolutionSelector = ResolutionSelector.Builder()
-            .setAspectRatioStrategy(AspectRatioStrategy.RATIO_4_3_FALLBACK_AUTO_STRATEGY)
+            .setAspectRatioStrategy(AspectRatioStrategy.RATIO_16_9_FALLBACK_AUTO_STRATEGY)
             .build()
+
         preview =
             Preview.Builder()
                 .setResolutionSelector(resolutionSelector)
-                // .setTargetAspectRatio(AspectRatio.RATIO_4_3)
                 .setTargetRotation(fragmentCameraBinding.viewFinder.display.rotation)
                 .build()
 
         imageAnalyzer =
             ImageAnalysis.Builder()
                 .setResolutionSelector(resolutionSelector)
-                // .setTargetAspectRatio(AspectRatio.RATIO_4_3)
                 .setTargetRotation(fragmentCameraBinding.viewFinder.display.rotation)
                 .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                 .setOutputImageFormat(ImageAnalysis.OUTPUT_IMAGE_FORMAT_RGBA_8888)
@@ -207,6 +236,17 @@ class CameraFragment : Fragment(), OverlayView.OnClickListener {
 
         try {
             camera = cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageAnalyzer)
+                .also { camera ->
+                    camera.cameraInfo.torchState.observe(this) { state ->
+                        isTorchEnabled = (state == TorchState.ON)
+
+                        if (isTorchEnabled) {
+                            fragmentCameraBinding.iconButtonFlash.load(R.drawable.flash_on_24)
+                        } else {
+                            fragmentCameraBinding.iconButtonFlash.load(R.drawable.flash_off_24)
+                        }
+                    }
+                }
 
             preview?.surfaceProvider = fragmentCameraBinding.viewFinder.surfaceProvider
         } catch (e: Exception) {
@@ -232,6 +272,18 @@ class CameraFragment : Fragment(), OverlayView.OnClickListener {
         findNavController().navigate(action)
     }
 
+    private fun navigateToSettings() {
+        val action = CameraFragmentDirections.actionCameraFragmentToSettingsFragment()
+        findNavController().navigate(action)
+    }
+
+    private fun startMapsIntent() {
+        val mapsIntentUri = Uri.parse("geo:0,0?q=recycling+centre")
+        val mapsIntent = Intent(Intent.ACTION_VIEW, mapsIntentUri)
+        mapsIntent.setPackage("com.google.android.apps.maps")
+        requireContext().startActivity(mapsIntent)
+    }
+
     override fun onDestroy() {
         super.onDestroy()
 
@@ -240,7 +292,6 @@ class CameraFragment : Fragment(), OverlayView.OnClickListener {
 
         _fragmentCameraBinding = null
     }
-
 
     companion object {
         const val TAG = "CameraFragment"

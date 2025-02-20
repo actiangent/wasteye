@@ -33,7 +33,7 @@ class WasteListAdapter(
             val context = binding.root.context
 
             binding.apply {
-                textWasteName.text = item.name
+                textWasteName.text = context.getString(item.nameResId)
                 imageWaste.apply {
                     shapeAppearanceModel = shapeAppearanceModel.toBuilder()
                         .setAllCorners(CornerFamily.ROUNDED, 16f)

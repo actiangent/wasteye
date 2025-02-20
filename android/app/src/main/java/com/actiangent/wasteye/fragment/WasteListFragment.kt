@@ -1,5 +1,7 @@
 package com.actiangent.wasteye.fragment
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -29,19 +31,22 @@ class WasteListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val wasteListAdapter = WasteListAdapter(::navigateToWasteDetail)
-        fragmentWasteListBinding.recyclerViewWastes.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-            adapter = wasteListAdapter
+        fragmentWasteListBinding.apply {
+            recyclerViewWastes.apply {
+                layoutManager = LinearLayoutManager(requireContext())
+                adapter = wasteListAdapter
 
-            addItemDecoration(
-                DividerItemDecoration(
-                    requireContext(),
-                    DividerItemDecoration.VERTICAL
+                addItemDecoration(
+                    DividerItemDecoration(
+                        requireContext(),
+                        DividerItemDecoration.VERTICAL
+                    )
                 )
-            )
+            }
         }
 
-        wasteListAdapter.submitList(Waste.entries)
+
+        wasteListAdapter.submitList(Waste.entries.subList(0, Waste.entries.size - 1))
     }
 
     private fun navigateToWasteDetail(waste: Waste) {

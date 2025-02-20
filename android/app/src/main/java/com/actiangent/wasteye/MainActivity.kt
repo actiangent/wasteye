@@ -2,6 +2,7 @@ package com.actiangent.wasteye
 
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.addCallback
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity

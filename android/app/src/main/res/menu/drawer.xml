@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:id="@+id/drawer_group_wastes"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/drawer_group_wastes_subtitle"
+            android:title="@string/waste">
+            <menu>
+                <item
+                    android:id="@+id/drawer_item_wastes"
+                    android:icon="@drawable/question_mark_24"
+                    android:title="@string/wastes_heading" />
+            </menu>
+        </item>
+    </group>
+
+    <group
+        android:id="@+id/drawer_group_recycle"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/drawer_group_recycle_subtitle"
+            android:title="@string/recycle">
+            <menu>
+                <item
+                    android:id="@+id/drawer_item_recycle"
+                    android:icon="@drawable/question_mark_24"
+                    android:title="@string/nearest_recycle_centre" />
+            </menu>
+        </item>
+    </group>
+
+    <group
+        android:id="@+id/drawer_group_settings"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/drawer_group_settings_subtitle"
+            android:title="@string/settings">
+            <menu>
+                <item
+                    android:id="@+id/drawer_item_settings"
+                    android:icon="@drawable/settings_24"
+                    android:title="@string/settings" />
+            </menu>
+        </item>
+    </group>
+
+</menu>

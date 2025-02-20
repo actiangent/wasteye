@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_cameraFragment_to_wasteListFragment"
             app:destination="@id/wasteListFragment" />
+        <action
+            android:id="@+id/action_cameraFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/wasteListFragment"
@@ -32,4 +35,9 @@
             android:name="wasteOrdinal"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.actiangent.wasteye.fragment.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
 </navigation>

@@ -3,13 +3,15 @@ package com.actiangent.wasteye.fragment
 import android.graphics.text.LineBreaker
 import android.os.Build
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.style.BulletSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import coil.load
-import coil.size.Scale
 import com.actiangent.wasteye.databinding.FragmentWasteDetailBinding
 import com.actiangent.wasteye.model.Waste
 import com.google.android.material.shape.CornerFamily
@@ -37,11 +39,11 @@ class WasteDetailFragment : Fragment() {
         fragmentWasteDetailBinding.apply {
             textWasteName.text = requireContext().getString(waste.nameResId)
             textWasteExplanation.text = waste.explanation
-            textWasteSortation.text = waste.sortation
+            textWasteSortation.text = buildBulletSpannableString(waste.sortation)
             textWasteRecycling.text = waste.recycling
             imageWaste.apply {
                 shapeAppearanceModel = shapeAppearanceModel.toBuilder()
-                    .setAllCorners(CornerFamily.ROUNDED, 16f)
+                    .setAllCorners(CornerFamily.ROUNDED, 4f)
                     .build()
                 load(waste.imageResId) {
                     crossfade(50)
@@ -54,5 +56,23 @@ class WasteDetailFragment : Fragment() {
                 textWasteRecycling.justificationMode = LineBreaker.JUSTIFICATION_MODE_INTER_WORD
             }
         }
+    }
+
+    private fun buildBulletSpannableString(points: List<String>): SpannableString {
+        val pointsString = points.reduce { accumulator, point -> accumulator + "\n" + point }
+        val spannableString = SpannableString(pointsString)
+
+        var spanStart = 0
+        points.forEach { point ->
+            spannableString.setSpan(
+                BulletSpan(24),
+                spanStart,
+                spanStart + point.length,
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+            spanStart += point.length + 1
+        }
+
+        return spannableString
     }
 }

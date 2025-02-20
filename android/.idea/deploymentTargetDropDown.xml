@@ -18,6 +18,12 @@
           <timeTargetWasSelectedWithDropDown value="2025-02-11T10:57:23.000183800Z" />
         </State>
       </entry>
+      <entry key="model_isDetectedImageScaledWithinModelDimens()">
+        <State />
+      </entry>
+      <entry key="model_isDetectedResultsCorrect()">
+        <State />
+      </entry>
     </value>
   </component>
 </project>

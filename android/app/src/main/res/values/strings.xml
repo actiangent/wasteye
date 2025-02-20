@@ -7,7 +7,15 @@
     <string name="waste_type_paper">Paper</string>
     <string name="waste_type_plastic">Plastic</string>
     <string name="waste_type_unknown">Unknown</string>
-    <string name="waste_list_heading">Recyclable Waste Types</string>
+    <string name="waste">Waste</string>
+    <string name="wastes_heading">Waste Types</string>
+    <string name="waste_sortation_heading">Sortation</string>
+    <string name="waste_recycling_heading">Recycling</string>
+    <string name="recycle">Recycle</string>
+    <string name="nearest_recycle_centre">Nearest Recycling Centre</string>
+    <string name="settings">Settings</string>
+    <string name="language">Language</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -16,7 +16,10 @@ import org.tensorflow.lite.task.vision.detector.Detection
 import java.util.LinkedList
 import kotlin.math.max
 
-class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
+class OverlayView @JvmOverloads constructor(
+    context: Context?,
+    attrs: AttributeSet? = null,
+) : View(context, attrs) {
 
     private var results: List<Detection> = LinkedList<Detection>()
     private var boxPaint = Paint()
@@ -72,7 +75,7 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
 
             // Draw bounding box around detected objects
             val boundingBox = RectF(left, top, right, bottom)
-            canvas.drawRoundRect(boundingBox, 16f, 16f, boxPaint)
+            canvas.drawRoundRect(boundingBox, 8f, 8f, boxPaint)
 
             boundingBoxes.add(boundingBox)
 
@@ -129,10 +132,10 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
         event?.let { motionEvent ->
             if (motionEvent.action == MotionEvent.ACTION_DOWN) {
                 boundingBoxes.forEachIndexed { index, bounds ->
-                    if (motionEvent.rawX <= (bounds.centerX() + (BOUNDING_CIRCLE_RADIUS / 2)) &&
-                        motionEvent.rawX >= (bounds.centerX() - (BOUNDING_CIRCLE_RADIUS / 2)) &&
-                        motionEvent.rawY <= ((bounds.centerY() + (bounds.height() / 2)) + (BOUNDING_CIRCLE_RADIUS / 2)) &&
-                        motionEvent.rawY >= ((bounds.centerY() + (bounds.height() / 2)) - (BOUNDING_CIRCLE_RADIUS / 2))
+                    if (motionEvent.x <= (bounds.centerX() + (BOUNDING_CIRCLE_RADIUS / 2)) &&
+                        motionEvent.x >= (bounds.centerX() - (BOUNDING_CIRCLE_RADIUS / 2)) &&
+                        motionEvent.y <= ((bounds.centerY()) - (BOUNDING_CIRCLE_RADIUS)) &&
+                        motionEvent.y >= ((bounds.centerY()) + (BOUNDING_CIRCLE_RADIUS))
                     ) {
                         val result = results[index]
                         val label = result.categories[0].label
