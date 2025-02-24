@@ -34,6 +34,8 @@ class OverlayView @JvmOverloads constructor(
 
     private var onClickListener: OnClickListener? = null
 
+    private var isShowScore: Boolean = false
+
     init {
         initPaints()
     }
@@ -94,7 +96,11 @@ class OverlayView @JvmOverloads constructor(
                 Waste.PLASTIC -> context.getString(R.string.waste_type_plastic)
                 Waste.UNKNOWN -> context.getString(R.string.waste_type_unknown)
             }
-            val drawableText = "$typeText ${String.format("%.2f", result.categories[0].score)}"
+            val drawableText = if (isShowScore) {
+                "$typeText ${String.format("%.2f", result.categories[0].score)}"
+            } else {
+                typeText
+            }
 
             // Draw rect behind display text
             textBackgroundPaint.getTextBounds(drawableText, 0, drawableText.length, textBounds)
@@ -169,6 +175,10 @@ class OverlayView @JvmOverloads constructor(
         // PreviewView is in FILL_START mode. So we need to scale up the bounding box to match with
         // the size that the captured images will be displayed.
         scaleFactor = max(width * 1f / imageWidth, height * 1f / imageHeight)
+    }
+
+    fun setIsShowScore(isShowScore: Boolean) {
+        this.isShowScore = isShowScore
     }
 
     interface OnClickListener {

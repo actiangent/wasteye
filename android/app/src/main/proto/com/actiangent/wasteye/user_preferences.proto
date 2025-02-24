@@ -7,7 +7,7 @@ option java_multiple_files = true;
 
 message UserPreferences {
 
-  bool show_detection_score = 1;
+  bool is_show_detection_score = 1;
 
   LanguagesProto languagePreference = 2;
 }

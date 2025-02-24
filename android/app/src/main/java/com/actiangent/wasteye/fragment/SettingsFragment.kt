@@ -63,7 +63,7 @@ class SettingsFragment : Fragment() {
 
             lifecycleScope.launch {
                 viewModel.userData.collect { userData ->
-                    switchShowDetectionScore.isChecked = userData.showDetectionScore
+                    switchShowDetectionScore.isChecked = userData.isShowDetectionScore
                     dropdown.setText("${userData.languagePreference}", false)
                 }
             }

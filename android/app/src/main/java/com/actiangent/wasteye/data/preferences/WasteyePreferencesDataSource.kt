@@ -17,7 +17,7 @@ class WasteyePreferencesDataSource(
     val userData = userPreferences.data
         .map { userPreferences ->
             UserData(
-                showDetectionScore = userPreferences.showDetectionScore,
+                isShowDetectionScore = userPreferences.isShowDetectionScore,
                 languagePreference = when (userPreferences.languagePreference) {
                     null,
                     LanguagesProto.UNRECOGNIZED,
@@ -29,11 +29,11 @@ class WasteyePreferencesDataSource(
         }
         .distinctUntilChanged()
 
-    suspend fun setShowDetectionScore(show: Boolean) {
+    suspend fun setIsShowDetectionScore(show: Boolean) {
         try {
             userPreferences.updateData { preferences ->
                 preferences.toBuilder()
-                    .setShowDetectionScore(show)
+                    .setIsShowDetectionScore(show)
                     .build()
             }
         } catch (ioException: IOException) {

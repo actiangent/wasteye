@@ -27,11 +27,14 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import coil.load
 import com.actiangent.wasteye.R
+import com.actiangent.wasteye.WasteyeApplication
 import com.actiangent.wasteye.WasteyeObjectDetector
 import com.actiangent.wasteye.databinding.FragmentCameraBinding
+import com.actiangent.wasteye.factory.WasteyeViewModelFactory
 import com.actiangent.wasteye.model.Waste
 import com.actiangent.wasteye.view.OverlayView
 import org.tensorflow.lite.task.vision.detector.Detection
@@ -46,6 +49,11 @@ class CameraFragment : Fragment(), OverlayView.OnClickListener {
     private var _fragmentCameraBinding: FragmentCameraBinding? = null
     private val fragmentCameraBinding get() = _fragmentCameraBinding!!
 
+    private val viewModel: CameraViewModel by viewModels(factoryProducer = {
+        WasteyeViewModelFactory(WasteyeApplication.injection)
+    })
+
+    private val isShowDetectionScore = viewModel.userData.value.isShowDetectionScore
     private var isTorchEnabled = false
 
     private val requestPermissionLauncher =
@@ -109,7 +117,10 @@ class CameraFragment : Fragment(), OverlayView.OnClickListener {
         cameraExecutor = Executors.newSingleThreadExecutor()
 
         fragmentCameraBinding.apply {
-            overlay.setOnclickListener(this@CameraFragment)
+            overlay.apply {
+                setIsShowScore(isShowDetectionScore)
+                setOnclickListener(this@CameraFragment)
+            }
             iconButtonFlash.setOnClickListener {
                 camera?.cameraControl?.enableTorch(!isTorchEnabled)
             }
