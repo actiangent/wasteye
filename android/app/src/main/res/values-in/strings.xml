@@ -15,4 +15,78 @@
     <string name="nearest_recycle_centre">Pusat Daur Ulang Terdekat</string>
     <string name="settings">Pengaturan</string>
     <string name="language">Bahasa</string>
+
+    <string name="waste_type_description_cardboard">
+        Karton adalah bahan berbasis kertas yang digunakan untuk mengemas dan mengemas barang. Karton biasanya terbuat dari serat daur ulang dan memiliki daya tahan yang tinggi. Meskipun dapat didaur ulang, kardus yang terkena minyak atau air sulit untuk diproses ulang. Pengelolaan kardus yang tepat meliputi penyimpanan kering dan pencacahan sebelum dikirim ke pusat daur ulang.
+    </string>
+    <string name="waste_type_description_glass">
+        Kaca adalah bahan yang berasal dari pasir silika, soda, dan kapur, yang digunakan dalam botol, gelas, dan jendela. Kaca dapat didaur ulang berkali-kali tanpa kehilangan kualitasnya, tetapi harus disortir berdasarkan warnanya. Pecahan kaca menimbulkan risiko cedera dan sulit untuk diproses ketika dicampur dengan bahan lain. Untuk pengelolaan yang tepat, kaca harus dibersihkan dari sisa-sisa makanan dan disimpan dalam wadah terpisah sebelum didaur ulang.
+    </string>
+    <string name="waste_type_description_metal">
+        Sampah logam seperti aluminium dan besi berasal dari kaleng minuman, makanan, atau suku cadang kendaraan. Logam memiliki nilai daur ulang yang tinggi karena dapat dilebur dan dibentuk kembali menjadi produk baru. Kaleng aluminium, misalnya, dapat didaur ulang dalam waktu singkat menjadi kaleng baru. Untuk pemilahan, logam harus dipisahkan dari plastik atau kertas, dan logam yang berkarat atau terkontaminasi lebih sulit untuk didaur ulang.
+    </string>
+    <string name="waste_type_description_paper">
+        Kertas berasal dari serat kayu dan digunakan dalam berbagai produk seperti koran, majalah, dan kemasan. Kertas bersih dapat didaur ulang hingga 5-7 kali sebelum seratnya rusak. Namun, kertas yang telah terkena minyak atau makanan tidak dapat didaur ulang. Untuk menyortirnya, pastikan kertas dalam keadaan kering dan tidak tercampur dengan bahan non-kertas seperti plastik atau logam.
+    </string>
+    <string name="waste_type_description_plastic">
+        Plastik terbuat dari polimer sintetis yang digunakan dalam botol, kemasan makanan, dan peralatan rumah tangga. Plastik terdiri dari berbagai jenis yang harus dipisahkan berdasarkan kode daur ulang. Beberapa plastik dapat didaur ulang menjadi produk baru, tetapi banyak juga yang berakhir di tempat pembuangan sampah atau mencemari lingkungan. Plastik yang bersih lebih mudah didaur ulang, jadi cucilah terlebih dahulu sebelum membuangnya ke tempat sampah.
+    </string>
+    <string name="waste_type_description_unknown">Tidak diketahui</string>
+
+    <string name="waste_type_explanation_cardboard">
+        Karton adalah bahan berbasis kertas yang sering digunakan untuk mengemas dan mengemas barang. Biasanya terbuat dari serat daur ulang, kardus memiliki kekuatan dan daya tahan yang baik. Namun, kardus yang terkontaminasi minyak, air, atau bahan kimia lainnya akan sulit untuk didaur ulang karena seratnya akan rusak dan proses daur ulang menjadi terhambat.
+    </string>
+    <string name="waste_type_explanation_glass">
+        Kaca adalah bahan anorganik yang terbuat dari pasir silika, soda, dan kapur, yang digunakan dalam berbagai produk seperti botol, gelas, dan jendela. Kaca dapat didaur ulang tanpa batas waktu tanpa kehilangan kualitasnya, tetapi proses daur ulang membutuhkan pemisahan berdasarkan warna (bening, hijau, coklat) karena perbedaan komposisi kimianya. Pecahan kaca dapat menimbulkan bahaya fisik dan mempersulit proses daur ulang jika tercampur dengan bahan lain.
+    </string>
+    <string name="waste_type_explanation_metal">
+        Logam, seperti aluminium dan besi sering ditemukan dalam bentuk kaleng minuman, makanan, atau suku cadang kendaraan. Logam memiliki nilai daur ulang yang tinggi karena dapat dilebur dan dibentuk kembali menjadi produk baru tanpa kehilangan kualitasnya. Namun, logam yang terkorosi atau terkontaminasi oleh bahan lain memerlukan proses pembersihan tambahan sebelum dapat didaur ulang.
+    </string>
+    <string name="waste_type_explanation_paper">
+        Kertas adalah bahan yang terbuat dari serat kayu dan digunakan dalam berbagai produk seperti koran, majalah, dan kemasan. Kertas bersih dapat didaur ulang hingga beberapa kali sebelum seratnya menjadi terlalu pendek untuk digunakan kembali. Namun, kertas yang terkontaminasi minyak, makanan, atau bahan kimia lainnya tidak dapat didaur ulang karena dapat merusak proses daur ulang dan kualitas produk akhir.
+    </string>
+    <string name="waste_type_explanation_plastic">
+        Plastik adalah bahan sintetis yang terbuat dari polimer dan digunakan dalam berbagai produk seperti botol minuman, kemasan makanan, peralatan rumah tangga, dan komponen industri. Plastik terdiri dari berbagai jenis dengan sifat dan tingkat daur ulang yang berbeda. Setiap jenis plastik diberi kode daur ulang untuk membantu proses pemilahan dan pemrosesan. Namun, tidak semua fasilitas daur ulang menerima semua jenis plastik karena beberapa jenis lebih sulit untuk diproses karena komposisi atau kontaminasi tertentu. Beberapa jenis plastik yang umum digunakan antara lain PET (Polyethylene Terephthalate) yang banyak ditemukan pada botol minuman dan kemasan makanan, serta HDPE (High-Density Polyethylene) yang digunakan untuk botol susu, kemasan deterjen, dan pipa plastik. Kedua jenis plastik ini memiliki tingkat daur ulang yang tinggi dan sering dijadikan botol, tekstil, atau bahan bangunan baru. Sementara itu, PVC (Polyvinyl Chloride) yang digunakan pada pipa air, lantai vinil, dan mainan, lebih sulit untuk didaur ulang karena mengandung bahan tambahan yang berbahaya. LDPE (Low-Density Polyethylene) sering digunakan untuk kantong plastik, pembungkus makanan, dan botol fleksibel, tetapi tingkat daur ulangnya rendah meskipun dapat diolah menjadi kantong sampah atau bahan bangunan. Plastik PP (Polypropylene) yang terdapat pada wadah yogurt, tutup botol, dan peralatan rumah tangga dapat didaur ulang menjadi berbagai produk plastik keras, namun prosesnya lebih sulit dibandingkan dengan PET dan HDPE. Sementara itu, PS (Polystyrene) atau yang lebih dikenal dengan sebutan styrofoam banyak digunakan untuk wadah makanan sekali pakai dan penyekat bangunan, namun sulit untuk didaur ulang dan sering kali berakhir di tempat pembuangan sampah. Ada juga kategori Lainnya yang mencakup berbagai jenis plastik seperti PC (Polycarbonate) yang sering digunakan untuk botol bayi dan wadah air galon, serta bioplastik seperti PLA yang dapat terurai di fasilitas pengomposan industri.
+    </string>
+    <string name="waste_type_explanation_unknown">Tidak diketahui</string>
+
+    <string-array name="waste_type_sortation_cardboard">
+        <item>Pisahkan kardus dari sampah lainnya, terutama yang terkontaminasi. Pastikan kardus dalam keadaan kering dan bersih.</item>
+        <item>Lipat atau potong kardus menjadi potongan-potongan yang lebih kecil agar lebih mudah disimpan dan diangkut.</item>
+    </string-array>
+    <string-array name="waste_type_sortation_glass">
+        <item>Pisahkan kaca berdasarkan warna dan jenisnya, pastikan untuk menangani pecahan kaca dengan hati-hati agar tidak terjadi cedera.</item>
+    </string-array>
+    <string-array name="waste_type_sortation_metal">
+        <item>Pisahkan logam berdasarkan jenisnya, seperti aluminium dan besi.</item>
+        <item>Bersihkan logam dari sisa makanan atau kontaminan lainnya.</item>
+    </string-array>
+    <string-array name="waste_type_sortation_paper">
+        <item>Pisahkan kertas bersih dari kertas yang terkontaminasi.</item>
+        <item>Kertas bersih termasuk koran, majalah, dan kertas kantor.</item>
+    </string-array>
+    <string-array name="waste_type_sortation_plastic">
+        <item>Bersihkan plastik dari sisa makanan atau kontaminan.</item>
+        <item>Pisahkan plastik berdasarkan jenis dan kode daur ulang.</item>
+    </string-array>
+    <string-array name="waste_type_sortation_unknown">
+        <item>Tidak ada petunjuk penyortiran yang spesifik.</item>
+    </string-array>
+
+    <string name="waste_type_recycling_cardboard">
+        Karton bersih dapat didaur ulang menjadi produk kertas baru. Proses daur ulang melibatkan penghancuran kardus menjadi serat-serat, yang kemudian diproses menjadi lembaran kertas baru. Untuk kardus yang tidak dapat didaur ulang karena terkontaminasi, pertimbangkan untuk menggunakannya sebagai bahan bakar alternatif atau bahan kompos, meskipun efisiensinya mungkin lebih rendah.
+    </string>
+    <string name="waste_type_recycling_glass">
+        Kaca yang telah disortir dan dibersihkan dilebur pada suhu tinggi dan kemudian dibentuk kembali menjadi produk baru seperti botol atau wadah lainnya. Proses ini menghemat energi dan sumber daya dibandingkan dengan produksi kaca dari bahan mentah.
+    </string>
+    <string name="waste_type_recycling_metal">
+        Logam yang telah disortir dan dibersihkan dilebur dalam tungku khusus dan kemudian dicetak menjadi produk baru. Sebagai contoh, kaleng aluminium dapat didaur ulang menjadi kaleng baru atau produk aluminium lainnya, sehingga menghemat energi dan sumber daya alam.
+    </string>
+    <string name="waste_type_recycling_paper">
+        Kertas bersih dihancurkan menjadi serat, dicampur dengan air untuk membentuk bubur kertas, dan kemudian diproses menjadi lembaran kertas baru. Kertas yang tidak dapat didaur ulang dapat digunakan sebagai bahan kompos atau bahan bakar alternatif, meskipun kontribusinya mungkin lebih kecil daripada daur ulang.
+    </string>
+    <string name="waste_type_recycling_plastic">
+        Plastik yang telah disortir dan dibersihkan diparut menjadi serpihan-serpihan kecil, kemudian dilebur dan dicetak menjadi pelet plastik. Pelet ini dapat digunakan sebagai bahan baku produk plastik baru. Beberapa jenis plastik yang sulit didaur ulang dapat diolah menjadi bahan bakar alternatif melalui proses pirolisis atau produk lain seperti paving block, meskipun metode ini masih dalam tahap pengembangan dan penerapannya masih terbatas.
+    </string>
+    <string name="waste_type_recycling_unknown">Tidak diketahui</string>
 </resources>

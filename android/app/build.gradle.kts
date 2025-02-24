@@ -73,10 +73,10 @@ dependencies {
     implementation(libs.tensorflow.lite.gpu)
     implementation(libs.tensorflow.lite.gpu.delegate.plugin)
 
-    implementation("androidx.datastore:datastore:1.1.2")
-    implementation("com.google.protobuf:protobuf-javalite:4.29.3")
+    implementation(libs.androidx.datastore)
+    implementation(libs.protobuf.javalite)
 
-    implementation("com.github.YarikSOffice:lingver:1.3.0")
+    implementation(libs.lingver)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
