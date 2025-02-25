@@ -1,5 +1,6 @@
 package com.actiangent.wasteye.view
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
@@ -134,6 +135,7 @@ class OverlayView @JvmOverloads constructor(
         }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         event?.let { motionEvent ->
             if (motionEvent.action == MotionEvent.ACTION_DOWN) {
@@ -192,5 +194,7 @@ class OverlayView @JvmOverloads constructor(
     companion object {
         private const val BOUNDING_CIRCLE_RADIUS = 20f
         private const val BOUNDING_RECT_TEXT_PADDING = 16
+
+        const val TAG = "OverlayView"
     }
 }

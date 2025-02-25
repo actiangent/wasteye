@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Wasteye</string>
+
     <string name="waste_type_cardboard">Karton</string>
     <string name="waste_type_glass">Kaca</string>
     <string name="waste_type_metal">Logam</string>

@@ -10,7 +10,7 @@
             <menu>
                 <item
                     android:id="@+id/drawer_item_wastes"
-                    android:icon="@drawable/question_mark_24"
+                    android:icon="@drawable/recycling_24"
                     android:title="@string/wastes_heading" />
             </menu>
         </item>
@@ -25,7 +25,7 @@
             <menu>
                 <item
                     android:id="@+id/drawer_item_recycle"
-                    android:icon="@drawable/question_mark_24"
+                    android:icon="@drawable/near_me_24"
                     android:title="@string/nearest_recycle_centre" />
             </menu>
         </item>
