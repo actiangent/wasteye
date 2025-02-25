@@ -3,13 +3,14 @@ activity = "1.9.3"
 agp = "8.3.0"
 androidxArchCore = "2.2.0"
 androidxNaviationSafeargs = "2.8.3"
+androidxTest = "1.5.0"
 appcompat = "1.7.0"
 camerax = "1.4.0"
 coil = "2.5.0"
 constraintlayout = "2.2.0"
 coreKtx = "1.13.0"
 androidxDatastore = "1.1.2"
-espressoCore = "3.6.1"
+espressoCore = "3.5.0"
 fragment = "1.8.6"
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -39,6 +40,8 @@ androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-co
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "lifecycle" }
 androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+androidx-test-core = { group = "androidx.test", name = "core", version.ref = "androidxTest" }
+androidx-test-rules = { group = "androidx.test", name = "rules", version.ref = "androidxTest" }
 coil = { module = "io.coil-kt:coil", version.ref = "coil" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 kotlinx-coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "kotlinxCoroutines" }

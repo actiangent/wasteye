@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import coil.load
-import coil.size.Scale
 import com.actiangent.wasteye.databinding.FragmentWasteBottomSheetBinding
 import com.actiangent.wasteye.model.Waste
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -41,7 +40,7 @@ class WasteBottomSheetFragment(private val waste: Waste) : BottomSheetDialogFrag
                     crossfade(50)
                 }
             }
-            textWasteDescription.text = waste.description
+            textWasteDescription.text = requireContext().resources.getString(waste.descriptionResId)
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 textWasteDescription.justificationMode = JUSTIFICATION_MODE_INTER_WORD

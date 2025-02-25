@@ -28,6 +28,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import coil.load
 import com.actiangent.wasteye.R
@@ -37,6 +38,7 @@ import com.actiangent.wasteye.databinding.FragmentCameraBinding
 import com.actiangent.wasteye.factory.WasteyeViewModelFactory
 import com.actiangent.wasteye.model.Waste
 import com.actiangent.wasteye.view.OverlayView
+import kotlinx.coroutines.launch
 import org.tensorflow.lite.task.vision.detector.Detection
 import java.util.LinkedList
 import java.util.concurrent.ExecutorService
@@ -53,7 +55,6 @@ class CameraFragment : Fragment(), OverlayView.OnClickListener {
         WasteyeViewModelFactory(WasteyeApplication.injection)
     })
 
-    private val isShowDetectionScore = viewModel.userData.value.isShowDetectionScore
     private var isTorchEnabled = false
 
     private val requestPermissionLauncher =
@@ -117,10 +118,7 @@ class CameraFragment : Fragment(), OverlayView.OnClickListener {
         cameraExecutor = Executors.newSingleThreadExecutor()
 
         fragmentCameraBinding.apply {
-            overlay.apply {
-                setIsShowScore(isShowDetectionScore)
-                setOnclickListener(this@CameraFragment)
-            }
+            overlay.setOnclickListener(this@CameraFragment)
             iconButtonFlash.setOnClickListener {
                 camera?.cameraControl?.enableTorch(!isTorchEnabled)
             }
@@ -135,16 +133,26 @@ class CameraFragment : Fragment(), OverlayView.OnClickListener {
                         navigateToWasteList()
                         true
                     }
+
                     R.id.drawer_item_recycle -> {
                         startMapsIntent()
                         true
                     }
+
                     R.id.drawer_item_settings -> {
                         navigateToSettings()
                         true
                     }
+
                     else -> false
                 }
+            }
+        }
+
+        lifecycleScope.launch {
+            viewModel.userData.collect { userData ->
+                fragmentCameraBinding.overlay
+                    .setIsShowScore(userData.isShowDetectionScore)
             }
         }
     }
@@ -273,7 +281,6 @@ class CameraFragment : Fragment(), OverlayView.OnClickListener {
     }
 
     override fun onWasteClicked(type: Waste) {
-
         val wasteBottomSheetFragment = WasteBottomSheetFragment(type)
         wasteBottomSheetFragment.show(parentFragmentManager, WasteBottomSheetFragment.TAG)
     }
