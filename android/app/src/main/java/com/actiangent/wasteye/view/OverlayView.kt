@@ -8,6 +8,7 @@ import android.graphics.Paint
 import android.graphics.Rect
 import android.graphics.RectF
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import androidx.core.graphics.ColorUtils
@@ -140,10 +141,10 @@ class OverlayView @JvmOverloads constructor(
         event?.let { motionEvent ->
             if (motionEvent.action == MotionEvent.ACTION_DOWN) {
                 boundingBoxes.forEachIndexed { index, bounds ->
-                    if (motionEvent.x <= (bounds.centerX() + (BOUNDING_CIRCLE_RADIUS / 2)) &&
-                        motionEvent.x >= (bounds.centerX() - (BOUNDING_CIRCLE_RADIUS / 2)) &&
-                        motionEvent.y <= ((bounds.centerY()) - (BOUNDING_CIRCLE_RADIUS)) &&
-                        motionEvent.y >= ((bounds.centerY()) + (BOUNDING_CIRCLE_RADIUS))
+                    if (motionEvent.x <= (bounds.centerX() + (BOUNDING_CIRCLE_RADIUS)) &&
+                        motionEvent.x >= (bounds.centerX() - (BOUNDING_CIRCLE_RADIUS)) &&
+                        motionEvent.y <= ((bounds.centerY()) + (BOUNDING_CIRCLE_RADIUS)) &&
+                        motionEvent.y >= ((bounds.centerY()) - (BOUNDING_CIRCLE_RADIUS))
                     ) {
                         val result = results[index]
                         val label = result.categories[0].label
