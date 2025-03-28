@@ -2,60 +2,23 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="WasteyeTest">
-        <State />
-      </entry>
       <entry key="app">
-        <State>
-          <runningDeviceTargetSelectedWithDropDown>
-            <Target>
-              <type value="RUNNING_DEVICE_TARGET" />
-              <deviceKey>
-                <Key>
-                  <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\imnos\.android\avd\Pixel_4_API_30_1.avd" />
-                </Key>
-              </deviceKey>
-            </Target>
-          </runningDeviceTargetSelectedWithDropDown>
-          <targetSelectedWithDropDown>
-            <Target>
-              <type value="QUICK_BOOT_TARGET" />
-              <deviceKey>
-                <Key>
-                  <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\imnos\.android\avd\Pixel_4_API_30_1.avd" />
-                </Key>
-              </deviceKey>
-            </Target>
-          </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2025-02-25T03:51:12.280997800Z" />
-        </State>
-      </entry>
-      <entry key="changeLocaleIndonesiaLanguage()">
         <State />
       </entry>
-      <entry key="changeLocaleLanguage()">
+      <entry key="detectWaste()">
         <State />
       </entry>
       <entry key="detectWasteDetail()">
         <State />
       </entry>
+      <entry key="model_isDetectedResultsCorrect()">
+        <State />
+      </entry>
+      <entry key="permissionGranted_detectWaste_Incorrect()">
+        <State />
+      </entry>
       <entry key="selectWasteTypeDetail()">
-        <State>
-          <runningDeviceTargetSelectedWithDropDown>
-            <Target>
-              <type value="RUNNING_DEVICE_TARGET" />
-              <deviceKey>
-                <Key>
-                  <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\imnos\.android\avd\Pixel_4_API_30_1.avd" />
-                </Key>
-              </deviceKey>
-            </Target>
-          </runningDeviceTargetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2025-02-25T03:53:45.528698700Z" />
-        </State>
+        <State />
       </entry>
     </value>
   </component>

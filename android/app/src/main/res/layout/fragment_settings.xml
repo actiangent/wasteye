@@ -23,7 +23,7 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical">
@@ -31,13 +31,13 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Show detection score"
+                    android:text="@string/show_detection_score"
                     android:textAppearance="?attr/textAppearanceBodyLarge" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Show model confidence score beside label when detecting waste"
+                    android:text="@string/show_model_confidence_score_beside_label_when_detecting_waste"
                     android:textAppearance="?attr/textAppearanceBodyMedium" />
 
             </LinearLayout>
@@ -66,11 +66,11 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:text="Choose Language"
+                android:text="@string/choose_language"
                 android:textAppearance="?attr/textAppearanceBodyLarge" />
 
             <com.google.android.material.textfield.TextInputLayout

@@ -16,6 +16,9 @@
     <string name="nearest_recycle_centre">Nearest Recycling Centre</string>
     <string name="settings">Settings</string>
     <string name="language">Language</string>
+    <string name="show_detection_score">Show detection score</string>
+    <string name="show_model_confidence_score_beside_label_when_detecting_waste">Show model confidence score beside label when detecting waste</string>
+    <string name="choose_language">Choose Language</string>
 
     <string name="waste_type_description_cardboard">
         Cardboard is a paper-based material used for packaging and packing goods. Cardboard is usually made from recycled fibre and has high durability. Although recyclable, cardboard exposed to oil or water is difficult to reprocess. Proper management of cardboard includes dry storage and shredding before sending it to recycling centres.

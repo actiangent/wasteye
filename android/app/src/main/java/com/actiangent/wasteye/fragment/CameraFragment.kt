@@ -296,7 +296,8 @@ class CameraFragment : Fragment(), OverlayView.OnClickListener {
     }
 
     private fun startMapsIntent() {
-        val mapsIntentUri = Uri.parse("geo:0,0?q=recycling+centre")
+        val query = getString(R.string.nearest_recycle_centre).lowercase()
+        val mapsIntentUri = Uri.parse("geo:0,0?q=$query")
         val mapsIntent = Intent(Intent.ACTION_VIEW, mapsIntentUri)
         mapsIntent.setPackage("com.google.android.apps.maps")
         requireContext().startActivity(mapsIntent)

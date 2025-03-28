@@ -13,9 +13,12 @@
     <string name="waste_sortation_heading">Penyortiran</string>
     <string name="waste_recycling_heading">Daur Ulang</string>
     <string name="recycle">Daur Ulang</string>
-    <string name="nearest_recycle_centre">Pusat Daur Ulang Terdekat</string>
+    <string name="nearest_recycle_centre">Bank Sampah Terdekat</string>
     <string name="settings">Pengaturan</string>
     <string name="language">Bahasa</string>
+    <string name="show_detection_score">Tampilkan skor deteksi</string>
+    <string name="show_model_confidence_score_beside_label_when_detecting_waste">Tampilkan skor kepercayaan model di samping label saat mendeteksi sampah</string>
+    <string name="choose_language">Pilih Bahasa</string>
 
     <string name="waste_type_description_cardboard">
         Karton adalah bahan berbasis kertas yang digunakan untuk mengemas dan mengemas barang. Karton biasanya terbuat dari serat daur ulang dan memiliki daya tahan yang tinggi. Meskipun dapat didaur ulang, kardus yang terkena minyak atau air sulit untuk diproses ulang. Pengelolaan kardus yang tepat meliputi penyimpanan kering dan pencacahan sebelum dikirim ke pusat daur ulang.

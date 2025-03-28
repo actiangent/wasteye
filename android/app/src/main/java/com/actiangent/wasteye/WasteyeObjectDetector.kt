@@ -68,6 +68,6 @@ class WasteyeObjectDetector(
     }
 
     companion object {
-        private const val MODEL_PATH = "model/wasteye_quantized_metadata.tflite"
+        private const val MODEL_PATH = "model/wasteye_metadata.tflite"
     }
 }
